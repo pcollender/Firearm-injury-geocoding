@@ -71,7 +71,7 @@ Several small R scripts have been written to accomplish pre-processing tasks fro
 
 A pipeline using the example data is currently coded for windows in the executable batch file 'preprocess.bat'
 
-##Geocoding and post-processing
+## Geocoding and post-processing
 
 Once the data is in an appropriate input format, we can use docker to run DeGAUSS to extract coordinates of each address. See https://github.com/degauss-org/degauss-org.github.io/wiki/Geocoding-with-DeGAUSS.
 
