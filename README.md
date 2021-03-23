@@ -2,7 +2,7 @@
 Geocoding pipeline to map firearm injuries to census tracts and neighborhoods while protecting health information privacy. Relies on [DeGAUSS](https://degauss.org/) to extract latitude/longitude from address data, then assigns data points to census tracts or neighborhoods based on geoprocessing within R, flagging entries for which no precise match was obtained. 
 
 **General workflow:**
-1. Preprocess data to match DeGAUSS' [input format requirements](https://github.com/degauss-org/degauss-org.github.io/wiki/Geocoding-with-DeGAUSS#address-string-formatting)
+1. Preprocess data to match DeGAUSS' [input format requirements]<https://github.com/degauss-org/degauss-org.github.io/wiki/Geocoding-with-DeGAUSS#address-string-formatting>
 2. Run DeGAUSS shell script to obtain latitude/longitude
 3. Run R script to obtain neighborhood / census tract
 4. Remove PII and upload matched data to server
@@ -32,8 +32,8 @@ Geocoding pipeline to map firearm injuries to census tracts and neighborhoods wh
 4. (on Windows) Add R executables to the system path by
   * Opening system properties from the Start Menu or searchbar
   * Navigating to the advanced tab and clicking the 'Environmental Variables' button
-  * In the 'User Variables for <username>' box, click the row labeled 'Path', then click the 'Edit' button
-  * CLick 'New', then click 'Browse' and navigate to 'This PC/C/Program Files/R/<current version folder; e.g. R-4.0.1>/bin/x64'
+  * In the 'User Variables for (username)' box, click the row labeled 'Path', then click the 'Edit' button
+  * CLick 'New', then click 'Browse' and navigate to 'This PC/C/Program Files/R/(current version folder; e.g. R-4.0.1)/bin/x64'
 5. Install docker
   * for Windows, go to https://hub.docker.com/editions/community/docker-ce/desktop/windows/, download and run the executable
 6. Test docker installation
@@ -44,7 +44,7 @@ Geocoding pipeline to map firearm injuries to census tracts and neighborhoods wh
 
 ## Pre-processing
 
-DeGAUSS uses input data in csv format. It requires an address field with the approximate structure '<House number> <Street> <City> <State or state abbreviation> <Zip>'
+DeGAUSS uses input data in csv format. It requires an address field with the approximate structure '(House number) (Street) (City) (State or state abbreviation) (Zip)'
 (see https://github.com/degauss-org/degauss-org.github.io/wiki/Geocoding-with-DeGAUSS)
 
 Street numbers should be written using arabic numerals, apartment numbers and second line addresses should be omitted, and zip codes must be included. Only the first 5 digits of zip codes will be used. Do not try to geocode PO box addresses.
@@ -55,18 +55,18 @@ Several small R scripts have been written to accomplish pre-processing tasks fro
 
 1. **add_single_value_field.R** 
   * Adds a field with a single value to the dataframe, e.g. if State is missing for dataset located entirely within California
-  * Arguments: *<input file name>* *<name of field to add>* *<value to assign to field for all entries>*
+  * Arguments: *(input file name)* *(name of field to add)* *(value to assign to field for all entries)*
   * Note: output will be saved as 'temp_data.csv' in the current working directory
 
 2. **standardize_numeric_field.R** 
   * Depending on arguments, either removes decimal points from house number fields or subsets zip code fields to the first 5 digits
-  * Arguments: *<input file name>* *<name of field to process>* *<indicator that field is zip code>*
+  * Arguments: *(input file name)* *(name of field to process)* *(indicator that field is zip code)*
   * Note: Setting the third argument zip (or ZIP, or Zip, or ZiP etc) will treat the field as a zipcode. Putting in any other value or omitting the 3rd argument will treat the field as a house number
   * Note: output will be saved as 'temp_data.csv' in the current working directory
 
 3. **concatenate_fields.R** 
   * Concatenates multiple fields to a single address field, with each element separated by a single space
-  * Arguments: *<input file name>* *<name of field 1 to concatenate>* *<name of field 2 to concatenate>* ... *<name of field n to concatenate>*
+  * Arguments: *(input file name)* *(name of field 1 to concatenate)* *(name of field 2 to concatenate)* ... *(name of field n to concatenate)*
   * Note: output will be saved as 'temp_data.csv' in the current working directory
 
 A pipeline using the example data is currently coded for windows in the executable batch file 'preprocess.bat'
@@ -81,12 +81,12 @@ After retrieving coordinates for each point, we run postprocessing scripts in R
 
 1. **qcReport.R** 
   * Flags rows of data with poor quality matches (or no matches) with the variable *qcPass*, and reports the number of matched and unmatched points
-  * Arguments: *<input file name>*
+  * Arguments: *(input file name)*
   * Note: output will be saved as 'temp_data_geoprocessed.csv' in the current working directory
 
 1. **tract_neighborhood_mapping.R** 
   * Loads census tract (from https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html) and neighborhood (from https://github.com/ningliang/Zillow-Neighborhoods/tree/master/data/ZillowNeighborhoods-CA) maps, and assigns each geocoded point to a neighborhood and census tract based on its location
-  * Arguments: *<input file name>*
+  * Arguments: *(input file name)*
   * Note: output will be saved as 'mapped_data.csv' in the Processed_data/ directory
 
 A pipeline using the preprocessing output of the example data is currently coded for windows in the executable batch file 'geocode.bat'
