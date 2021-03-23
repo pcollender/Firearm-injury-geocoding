@@ -38,3 +38,5 @@ vignettes/*.pdf
 # R Environment Variables
 .Renviron
 Raw_data/temp_data.csv
+Raw_data/temp_data_geocoded.csv
+Processed_data/mapped_data.csv
