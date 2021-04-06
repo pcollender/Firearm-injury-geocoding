@@ -22,4 +22,4 @@ Rscript $PREPROCESSING_SCRIPTS/standardize_numeric_field.R temp_data.csv POSTCOD
 echo "Concatenating addresses"
 Rscript $PREPROCESSING_SCRIPTS/concatenate_fields.R temp_data.csv NUMBER STREET CITY STATE POSTCODE
 
-echo Done! Find preprocessed data in Raw_data/temp_data.csv
+echo "Done! Find preprocessed data in Raw_data/temp_data.csv"

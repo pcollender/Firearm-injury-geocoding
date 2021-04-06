@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=geocode
+Comment="Launch geocode"
+Exec=bash -c "export PATH=$PATH:`dirname %k`; geocode.command"
+Icon=ICON
+Terminal=true
+Type=Application
