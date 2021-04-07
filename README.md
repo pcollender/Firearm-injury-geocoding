@@ -23,6 +23,7 @@ Geocoding pipeline to map firearm injuries to census tracts and neighborhoods wh
 
 ## Installation
 
+### Windows
 1. Clone this repository to your computer
 2. Install R from https://cran.rstudio.com
 3. Open R and install required spatial packages by running the commands 
@@ -41,6 +42,19 @@ Geocoding pipeline to map firearm injuries to census tracts and neighborhoods wh
 ```
   docker run hello-world
 ```
+
+### Linux 
+
+1. Clone this repository to your computer
+2. Install R from https://cran.rstudio.com
+3. Install libgeos-dev, libgdal-dev (for Ubuntu `sudo apt install libgeos-dev libgdal-dev`)
+4. Open R and install required spatial packages by running the commands 
+    ```
+    install.packages( c('rgdal', 'sp', 'rgeos'))
+    ```
+5. Install docker
+  * for Ubuntu, go to https://docs.docker.com/engine/install/ubuntu/, download and run the executable
+
 
 ## Pre-processing
 
@@ -71,7 +85,7 @@ Several small R scripts have been written to accomplish pre-processing tasks fro
 
 A pipeline using the example data is currently coded for windows in the executable batch file 'preprocess.bat'
 
-##Geocoding and post-processing
+## Geocoding and post-processing
 
 Once the data is in an appropriate input format, we can use docker to run DeGAUSS to extract coordinates of each address. See https://github.com/degauss-org/degauss-org.github.io/wiki/Geocoding-with-DeGAUSS.
 
