@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=preprocess
+Comment="Launch preprocessing"
+Exec=bash -c "export PATH=$PATH:`dirname %k`; preprocess.command"
+Icon=ICON
+Terminal=true
+Type=Application
