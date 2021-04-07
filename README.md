@@ -40,9 +40,8 @@ Step 5. Identify patterns in data for which geolocation failed and refine pre-pr
 3. Add R executables to the system path so they can be run from command line:
     * On Windows machines:
         * Open system properties from the Start Menu or searchbar
-        ![picture alt](https://github.com/pcollender/Firearm-injury-geocoding/blob/main/Readme_files/Images/R_install.PNG)
-        * Navigate to the advanced tab and clicking the 'Environmental Variables' button
         ![picture alt](https://github.com/pcollender/Firearm-injury-geocoding/blob/main/Readme_files/Images/Windows_path1.png)
+        * Navigate to the advanced tab and clicking the 'Environmental Variables' button
         ![picture alt](https://github.com/pcollender/Firearm-injury-geocoding/blob/main/Readme_files/Images/Windows_path2.png)
         ![picture alt](https://github.com/pcollender/Firearm-injury-geocoding/blob/main/Readme_files/Images/Windows_path3.png)
         * In the 'User Variables for (username)' box, click the row labeled 'Path', then click the 'Edit' button
